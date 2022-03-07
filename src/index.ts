@@ -6,10 +6,18 @@
  */
 import { program } from 'commander';
 
+import init from './order/init';
 import pkg from '../package.json';
 
 program
+  .command('init')
+  .description('初始化macOS系统的一些配置')
+  .action(() => {
+    init();
+  })
+
+program
   .version(`${pkg.version}`, '-v --version')
-  .usage('<command> [option]');
+  .usage('mac-cli <command> [option]');
 
 program.parse(process.argv);
