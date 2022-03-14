@@ -6,7 +6,7 @@
  */
 
 import { prompt } from 'inquirer';
-import * as shell from 'shelljs';
+import { openAnySource, closeAnySource, installOhmyzsh } from '../utils/shellCommand';
 
 async function init(): Promise<void> {
   const options = [
@@ -16,40 +16,38 @@ async function init(): Promise<void> {
     },
     {
       value: 2,
-      name: '2. 安装oh-my-zsh'
+      name: '2. 关闭任何来源'
+    },
+    {
+      value: 3,
+      name: '3. 安装oh-my-zsh'
     }
   ]
-  const selected = await prompt([
+  const selectedOption = await prompt([
     {
       type: 'list',
-      name: 'option',
+      name: 'value',
       message: '选择你要进行的操作',
       choices: options,
     }
   ])
 
-  console.log(selected);
-  switch (selected.option) {
+
+  switch (selectedOption.value) {
     case 1:
       openAnySource();
       break;
-  
+    case 2:
+      closeAnySource();
+      break;
+    case 3:
+      installOhmyzsh();
+      break;
     default:
       break;
   }
 }
 
-// 开启任何来源
-async function openAnySource(): Promise<void> {
-  try {
-    await shell.exec('sudo spctl --master-disable', {
-      shell: true,
-    });
-    
-  } catch (error) {
-    throw new Error(error);
-  }
-}
 
 
 export default init;
