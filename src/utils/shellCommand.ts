@@ -5,7 +5,7 @@
  * @Description: 导出一些shell命令
  */
 
-import * as shell from 'shelljs';
+import shell from 'shelljs';
 
 export async function closeAnySource(): Promise<void> {
   const command = 'sudo spctl --master-enable';
@@ -49,6 +49,27 @@ export async function installOhmyzsh(): Promise<void> {
     console.log('oh-my-zh安装完成');
     // 询问是否安装ohmyzsh的一些常用插件
 
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+
+// 卸载oh my zsh 
+export async function uninstallOhmyzsh(): Promise<void> {
+  const uninstallOhmyzshCommand = 'uninstall_oh_my_zsh';
+
+  // 首先判断ohmyzsh是否存在
+  try {
+    console.log('运行命令：' + uninstallOhmyzshCommand);
+    const result = await shell.exec(uninstallOhmyzshCommand);
+
+    if (result.stderr) {
+      throw new Error(result.stderr);
+    }
+    
+    console.log('oh-my-zsh卸载完成');
+    
   } catch (error) {
     throw new Error(error);
   }

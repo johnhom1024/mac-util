@@ -6,7 +6,12 @@
  */
 
 import { prompt } from 'inquirer';
-import { openAnySource, closeAnySource, installOhmyzsh } from '../utils/shellCommand';
+import {
+  openAnySource,
+  closeAnySource,
+  installOhmyzsh,
+  uninstallOhmyzsh
+} from '../utils/shellCommand';
 
 async function init(): Promise<void> {
   const options = [
@@ -21,6 +26,10 @@ async function init(): Promise<void> {
     {
       value: 3,
       name: '3. 安装oh-my-zsh'
+    },
+    {
+      value: 4,
+      name: '4. 卸载oh-my-zsh'
     }
   ]
   const selectedOption = await prompt([
@@ -32,20 +41,27 @@ async function init(): Promise<void> {
     }
   ])
 
-
-  switch (selectedOption.value) {
-    case 1:
-      openAnySource();
-      break;
-    case 2:
-      closeAnySource();
-      break;
-    case 3:
-      installOhmyzsh();
-      break;
-    default:
-      break;
+  try {
+    switch (selectedOption.value) {
+      case 1:
+        openAnySource();
+        break;
+      case 2:
+        closeAnySource();
+        break;
+      case 3:
+        installOhmyzsh();
+        break;
+      case 4:
+        uninstallOhmyzsh();
+        break;
+      default:
+        break;
+    }
+  } catch (error) {
+    throw new Error(error);
   }
+
 }
 
 
