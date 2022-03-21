@@ -10,7 +10,8 @@ import {
   openAnySource,
   closeAnySource,
   installOhmyzsh,
-  uninstallOhmyzsh
+  uninstallOhmyzsh,
+  addNVMToZshrc,
 } from '../utils/shellCommand';
 
 async function init(): Promise<void> {
@@ -30,6 +31,10 @@ async function init(): Promise<void> {
     {
       value: 4,
       name: '4. 卸载oh-my-zsh'
+    },
+    {
+      value: 5,
+      name: '5. NVM变量添加'
     }
   ]
   const selectedOption = await prompt([
@@ -54,6 +59,9 @@ async function init(): Promise<void> {
         break;
       case 4:
         uninstallOhmyzsh();
+        break;
+      case 5:
+        addNVMToZshrc();
         break;
       default:
         break;
