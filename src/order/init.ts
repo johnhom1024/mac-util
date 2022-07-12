@@ -12,6 +12,7 @@ import {
   installOhmyzsh,
   uninstallOhmyzsh,
   addNVMToZshrc,
+  installZshAutosuggestions,
 } from '../utils/shellCommand';
 
 async function init(): Promise<void> {
@@ -35,6 +36,10 @@ async function init(): Promise<void> {
     {
       value: 5,
       name: '5. NVM变量添加'
+    },
+    {
+      value: 6,
+      name: '6. 安装zsh-suggestions插件'
     }
   ]
   const selectedOption = await prompt([
@@ -62,6 +67,9 @@ async function init(): Promise<void> {
         break;
       case 5:
         addNVMToZshrc();
+        break;
+      case 6:
+        installZshAutosuggestions();
         break;
       default:
         break;
