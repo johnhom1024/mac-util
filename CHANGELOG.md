@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/johnhom1024/mac-cli/compare/v1.0.0...v1.1.0) (2022-07-13)
+
+
+### Features
+
+* 去掉clear-console 移动@types/fs-extra到dev依赖中 ([58b3546](https://github.com/johnhom1024/mac-cli/commit/58b3546952a7140c0d11173db6da2ab4a0456b1a))
+* 新增zsh-syntax-highlighting安装函数 ([5c02868](https://github.com/johnhom1024/mac-cli/commit/5c02868b69b98703584ab41a96bcad7dbc2a10a7))
+
 ## 1.0.0 (2022-07-13)
 
 
