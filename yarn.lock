@@ -667,11 +667,6 @@ chokidar@^3.5.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-clear-console@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmmirror.com/clear-console/-/clear-console-1.1.0.tgz#9873a5fe9d763da3dd1c0f434095fabed7d444b4"
-  integrity sha512-bbSzBRZ4Pe7TZXmvWf2+CY2i+ssk+wulCex4Mqi1SZgiPp0ce5TiTJmiWoroJLKwaLhdFdLHkDrophk9KkA6eg==
-
 cli-cursor@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmmirror.com/cli-cursor/-/cli-cursor-2.1.0.tgz"
