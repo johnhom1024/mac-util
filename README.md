@@ -56,3 +56,7 @@ Cloning into '/Users/bigdog/.oh-my-zsh/custom/plugins/zsh-autosuggestions'...
 ```
 
 enjoy yourself!
+
+## TODO
+
+- [ ] 新增homebrew的自动安装
