@@ -22,7 +22,8 @@
     "eslint:comment": "使用 ESLint 检查并自动修复 src 目录下所有扩展名为 .ts 的文件",
     "eslint": "eslint --fix src --ext .ts --max-warnings=0",
     "prettier:comment": "自动格式化 src 目录下的所有 .ts 文件",
-    "prettier": "prettier --write \"src/**/*.ts\""
+    "prettier": "prettier --write \"src/**/*.ts\"",
+    "release": "standard-version"
   },
   "dependencies": {
     "@types/fs-extra": "^9.0.13",
@@ -48,6 +49,7 @@
     "eslint": "^8.10.0",
     "husky": "^7.0.4",
     "prettier": "^2.5.1",
+    "standard-version": "^9.5.0",
     "ts-node-dev": "^1.1.8"
   },
   "config": {
