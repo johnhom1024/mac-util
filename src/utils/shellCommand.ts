@@ -179,3 +179,55 @@ export async function installZshAutosuggestions(): Promise<void> {
     }
   }
 }
+
+// 安装zsh-syntax-highlighting插件
+export async function installZshSyntaxHighlighting(): Promise<void> {
+  try {
+    // 要先判断zsh-autosuggestions文件夹是否已存在
+    const zsh_syntax_highlighting_path = '~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting';
+
+    // 如果目录不存在
+    if (!shell.test('-e', zsh_syntax_highlighting_path)) {
+      console.log('开始安装 zsh-syntax-highlighting');
+
+      const installCommand = 'git clone https://github.91chi.fun/https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting';
+      console.log('运行命令：' + installCommand);
+      const result = await shell.exec(installCommand);
+      // 如果有错误，则终止
+      if (result.code !== 0) {
+        console.error('安装zsh-syntax-highlighting遇到错误，请重试')
+        return;
+      }
+      console.log('安装zsh-syntax-highlighting成功...');
+    } else {
+      console.log('监测到已安装zsh-syntax-highlighting');
+    }
+
+    // 安装完之后，要修改.zshrc文件，添加zsh-syntax-highlighting到plugins中
+    const zshrcFilePath = '~/.zshrc';
+    const { stdout: zshrcFile } = shell.cat(zshrcFilePath);
+
+    if (!zshrcFile.includes('zsh-syntax-highlighting')) {
+      console.log('更改~/.zshrc文件，写入zsh-syntax-highlighting...');
+      // 这里加了一个\n，用于过滤注释中的plugins字段
+      const reg = /\nplugins=\((.*)\)/g;
+      // 这里用正则匹配plugins=() 括号中的内容，然后replace加入zsh-syntax-highlighting
+      const newZshrcFile = zshrcFile.replace(reg, (_, p1) => {
+        // p1 是括号中的内容
+        return `\nplugins=(${p1 + ' ' + 'zsh-syntax-highlighting'})`;
+      })
+      
+      // 将新的zshrc内容覆盖到~/.zshrc文件中
+      new ShellString(newZshrcFile).to('~/.zshrc');
+    } else {
+      console.log('监测到zshrc中已经写入了zsh-syntax-highlighting');
+    }
+
+    console.log('完成');
+
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+  }
+}

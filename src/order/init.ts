@@ -13,6 +13,7 @@ import {
   uninstallOhmyzsh,
   addNVMToZshrc,
   installZshAutosuggestions,
+  installZshSyntaxHighlighting,
 } from '../utils/shellCommand';
 
 async function init(): Promise<void> {
@@ -40,7 +41,11 @@ async function init(): Promise<void> {
     {
       value: 6,
       name: '6. 安装zsh-suggestions插件'
-    }
+    },
+    {
+      value: 7,
+      name: '7. 安装zsh-syntax-highlighting插件'
+    },
   ]
   const selectedOption = await prompt([
     {
@@ -70,6 +75,9 @@ async function init(): Promise<void> {
         break;
       case 6:
         installZshAutosuggestions();
+        break;
+      case 7:
+        installZshSyntaxHighlighting();
         break;
       default:
         break;
