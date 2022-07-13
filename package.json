@@ -1,17 +1,24 @@
 {
-  "name": "mac-cli",
+  "name": "mac-util",
   "version": "1.0.0",
-  "main": "index.js",
-  "author": "anthony <924358746@qq.com>",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "author": "johnhom <924358746@qq.com>",
   "license": "MIT",
+  "files": [
+    "/bin",
+    "/lib"
+  ],
   "bin": {
-    "mac-cli": "./bin/cli.js"
+    "mac-util": "./bin/cli.js"
   },
   "scripts": {
     "commit:comment": "引导设置规范化的提交信息",
     "commit": "npx cz",
     "dev:comment": "启动开发环境",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build:comment": "构建",
+    "build": "rm -rf lib && npx tsc --build",
     "eslint:comment": "使用 ESLint 检查并自动修复 src 目录下所有扩展名为 .ts 的文件",
     "eslint": "eslint --fix src --ext .ts --max-warnings=0",
     "prettier:comment": "自动格式化 src 目录下的所有 .ts 文件",
@@ -25,7 +32,7 @@
     "fs-extra": "^10.1.0",
     "inquirer": "^8.2.0",
     "shelljs": "^0.8.5",
-    "typescript": "^4.6.2"
+    "typescript": "^4.7.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.1",
