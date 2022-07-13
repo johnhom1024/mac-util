@@ -74,8 +74,10 @@ async function init(): Promise<void> {
       default:
         break;
     }
-  } catch (error) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error(error.message)
+    }
   }
 
 }

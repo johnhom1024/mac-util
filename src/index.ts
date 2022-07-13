@@ -7,7 +7,6 @@
 import { program } from 'commander';
 
 import init from './order/init';
-import pkg from '../package.json';
 
 program
   .command('init')
@@ -17,7 +16,7 @@ program
   })
 
 program
-  .version(`${pkg.version}`, '-v --version')
-  .usage('mac-cli <command> [option]');
+  .version(`${process.env.npm_package_version}`, '-v --version')
+  .usage('mac-util <command> [option]');
 
 program.parse(process.argv);

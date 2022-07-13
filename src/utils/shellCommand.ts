@@ -14,8 +14,10 @@ export async function closeAnySource(): Promise<void> {
     console.log('运行命令：' + command);
     await shell.exec(command);
     console.log('已关闭任何来源');
-  } catch (error) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
   }
 }
 
@@ -27,8 +29,10 @@ export async function openAnySource(): Promise<void> {
     console.log('运行命令：' + command);
     await shell.exec(command);
     console.log('已开启任何来源');
-  } catch (error) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
   }
 }
 
@@ -55,8 +59,10 @@ export async function installOhmyzsh(): Promise<void> {
     console.log('oh-my-zh安装完成');
     // 询问是否安装ohmyzsh的一些常用插件
 
-  } catch (error) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
   }
 }
 
@@ -88,8 +94,10 @@ export async function uninstallOhmyzsh(): Promise<void> {
 
     console.log('oh-my-zsh卸载完成');
 
-  } catch (error) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
   }
 }
 
@@ -112,8 +120,10 @@ export async function addNVMToZshrc(): Promise<void> {
 
     console.log('NVM变量添加成功');
 
-  } catch (error) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
   }
 }
 
@@ -163,7 +173,9 @@ export async function installZshAutosuggestions(): Promise<void> {
 
     console.log('完成');
 
-  } catch (error) {
-    throw new Error(error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
   }
 }
