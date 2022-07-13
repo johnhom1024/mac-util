@@ -40,7 +40,7 @@ async function init(): Promise<void> {
     },
     {
       value: 6,
-      name: '6. 安装zsh-suggestions插件'
+      name: '6. 安装zsh-autosuggestions插件'
     },
     {
       value: 7,
