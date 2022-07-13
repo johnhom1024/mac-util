@@ -144,19 +144,23 @@ export async function installZshAutosuggestions(): Promise<void> {
     // 安装完之后，要修改.zshrc文件，添加zsh-autosuggestions到plugins中
     const zshrcFilePath = '~/.zshrc';
     const { stdout: zshrcFile } = shell.cat(zshrcFilePath);
-    
-    // console.log(zshrcFile);
-    
-    const reg = /\nplugins=\((.*)\)/g;
 
-    console.log('更改~/.zshrc文件，写入zsh-autosuggestions...');
-    
-    const newZshrcFile = zshrcFile.replace(reg, (_, p1) => {
-      return `\nplugins=(${p1 + ' ' + 'zsh-autosuggestions'})`;
-    })
+    if (!zshrcFile.includes('zsh-autosuggestions')) {
+      console.log('更改~/.zshrc文件，写入zsh-autosuggestions...');
+      // 这里加了一个\n，用于过滤注释中的plugins字段
+      const reg = /\nplugins=\((.*)\)/g;
+      // 这里用正则匹配plugins=() 括号中的内容，然后replace加入zsh-autosuggestions
+      const newZshrcFile = zshrcFile.replace(reg, (_, p1) => {
+        // p1 是括号中的内容
+        return `\nplugins=(${p1 + ' ' + 'zsh-autosuggestions'})`;
+      })
+      
+      // 将新的zshrc内容覆盖到~/.zshrc文件中
+      new ShellString(newZshrcFile).to('~/.zshrc');
+    } else {
+      console.log('监测到zshrc中已经写入了zsh-autosuggestions');
+    }
 
-    new ShellString(newZshrcFile).to('~/.zshrc');
-    
     console.log('完成');
 
   } catch (error) {
